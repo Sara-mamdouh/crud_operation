@@ -1,12 +1,25 @@
 <?php
+include_once "./databaseManager.php";
+$driver="mysql";
 $useName="root";
 $password ="";
+$dbName="hr";
+$host="localhost";
+$employeeTableManager =new EmployeeEntityManager($driver,$host,$dbName,$useName,$password);
+// $employeeTableManager->createNewEmployee('sara','mamdouh','neena.kochhar@sqltutorial.org','515.123.4568','1989-09-21',5,17000.00,100,9);
 
-try{
-  $pdo = new PDO("mysql:host=localhost;dbname=hr",$useName,$password);
-  $pdo->getAttribute(PDO::ATTR_ERRMODE ,PDO::ERRMODE_EXCEPTION);
-  // echo "suss";
-
-}catch(PDOException $e){
-  echo "error to connected to db " .$e->getMessage();
+$emps =$employeeTableManager->getAllEmployee();
+foreach($emps  as $emp){
+  echo $emp["first_name"] . "</br>";
 }
+
+
+
+// try{
+//   $pdo = new PDO("mysql:host=localhost;dbname=hr",$useName,$password);
+//   $pdo->getAttribute(PDO::ATTR_ERRMODE ,PDO::ERRMODE_EXCEPTION);
+//   // echo "suss";
+
+// }catch(PDOException $e){
+//   echo "error to connected to db " .$e->getMessage();
+// }
