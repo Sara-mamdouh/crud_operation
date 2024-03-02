@@ -21,14 +21,27 @@ class EmployeeEntityManager
     $employee = $employee->fetchAll(PDO::FETCH_ASSOC);
     return $employee;
   } 
-  public function findEmployeeById(){
+  public function findEmployeeById($employeeId){
+
+    $employee = $this->connection->prepare("SELECT * FROM employees where employee_id = ?");
+    $employee->execute([$employeeId]);
+    $employee = $employee->fetchAll(PDO::FETCH_ASSOC);
+    return $employee;
+
+  } 
+  public function updateEmployee($nameF,$nameL,$employeeId){
+    
+    $employee = $this->connection->prepare("UPDATE employees
+    SET first_name = ?, last_name= ?
+    WHERE employee_id = ?;");
+    $employee->execute([$nameF,$nameL,$employeeId]);
+    echo "UPDATE success";
     
   } 
-  public function updateEmployee(){
-    
-  } 
-  public function deleteEmployee(){
-    
+  public function deleteEmployee($employeeId){
+    $employee = $this->connection->prepare("delete  FROM employees where employee_id = ?");
+    $employee->execute([$employeeId]);
+    echo "employee deleted";
   }
 
 
