@@ -5,6 +5,7 @@ $useName="root";
 $password ="";
 $dbName="hr";
 $host="localhost";
+
 $employeeTableManager =new EmployeeEntityManager($driver,$host,$dbName,$useName,$password);
 // $employeeTableManager->createNewEmployee('sara','mamdouh','neena.kochhar@sqltutorial.org','515.123.4568','1989-09-21',5,17000.00,100,9);
 /////////////////////////
@@ -34,3 +35,5 @@ $employeeTableManager->updateEmployee("dody","Ebram",103);
 // }catch(PDOException $e){
 //   echo "error to connected to db " .$e->getMessage();
 // }
+
+$testt="testtttt";
